@@ -1,0 +1,411 @@
+:root {
+    --primary-color: #d32f2f;
+    --primary-hover: #b71c1c;
+    --bg-color: #f4f4f9;
+    --container-bg: #ffffff;
+    --text-color: #333333;
+    --secondary-text: #666666;
+    --border-color: #eeeeee;
+    --input-bg: #ffffff;
+    --shadow: 0 4px 15px rgba(0,0,0,0.1);
+    --modal-bg: rgba(0,0,0,0.5);
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+    --primary-color: #ff5252;
+    --primary-hover: #ff867f;
+    --bg-color: #121212;
+    --container-bg: #1e1e1e;
+    --text-color: #e0e0e0;
+    --secondary-text: #aaaaaa;
+    --border-color: #333333;
+    --input-bg: #2c2c2c;
+    --shadow: 0 4px 15px rgba(0,0,0,0.5);
+    --modal-bg: rgba(255,255,255,0.1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.app-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    width: 350px;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+header button {
+    background: none;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    padding: 5px;
+    margin-left: 10px;
+}
+
+header button:hover {
+    color: var(--primary-color);
+    background: none;
+    transform: scale(1.1);
+}
+
+.container {
+    background-color: var(--container-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    width: 95%;
+    max-width: 400px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* Digital Clock */
+#digital-clock {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--secondary-text);
+    margin-bottom: 0.5rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h1 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.timer-container {
+    margin-bottom: 2rem;
+}
+
+#timer {
+    font-size: 4.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+    margin: 1rem 0;
+    font-variant-numeric: tabular-nums;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px; /* Rounded pills */
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    margin: 0 5px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.btn-secondary {
+    background-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.btn-secondary:hover {
+    filter: brightness(0.9);
+    transform: translateY(-2px);
+}
+
+.btn-primary:disabled, .btn-secondary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.mode-controls {
+    margin-top: 1.5rem;
+    background-color: var(--border-color);
+    padding: 5px;
+    border-radius: 30px;
+    display: inline-flex;
+}
+
+.mode-controls button {
+    background-color: transparent;
+    color: var(--secondary-text);
+    font-size: 0.9rem;
+    padding: 8px 15px;
+    margin: 0;
+    border-radius: 25px;
+}
+
+.mode-controls button.active {
+    background-color: var(--container-bg);
+    color: var(--primary-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Tasks */
+.tasks-container {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+    text-align: left;
+}
+
+.tasks-container h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.completed-header {
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    color: var(--secondary-text);
+    border-top: 1px dashed var(--border-color);
+    padding-top: 1rem;
+}
+
+.input-group {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+#task-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border-radius: 25px 0 0 25px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#task-input:focus {
+    border-color: var(--primary-color);
+}
+
+#add-task-btn {
+    border-radius: 0 25px 25px 0;
+    background-color: #388e3c;
+    color: white;
+    margin: 0;
+    padding: 10px 15px;
+}
+
+#add-task-btn:hover {
+    background-color: #2e7d32;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: var(--bg-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    animation: slideIn 0.3s ease-out forwards;
+}
+
+li.completed span {
+    text-decoration: line-through;
+    color: var(--secondary-text);
+    opacity: 0.7;
+}
+
+li span {
+    cursor: pointer;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* Custom Checkbox Icon */
+li span::before {
+    content: '\f096'; /* fa-square-o */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 400;
+    margin-right: 10px;
+    color: var(--secondary-text);
+}
+
+li.completed span::before {
+    content: '\f14a'; /* fa-check-square */
+    font-weight: 900;
+    color: #388e3c;
+}
+
+.delete-btn {
+    background-color: transparent;
+    color: var(--secondary-text);
+    padding: 0 5px;
+    font-size: 1.1rem;
+}
+
+.delete-btn:hover {
+    color: #d32f2f;
+    background-color: transparent;
+    transform: scale(1.2);
+}
+
+/* Calendar */
+.calendar-container {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+    margin-top: 1rem;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.calendar-body {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.calendar-day-header {
+    font-weight: bold;
+    color: var(--secondary-text);
+    margin-bottom: 5px;
+}
+
+.calendar-day {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--bg-color);
+}
+
+.calendar-day.current-day {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+}
+
+.calendar-day.empty {
+    background-color: transparent;
+}
+
+/* Modal */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 100; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: var(--modal-bg); 
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--container-bg);
+    padding: 20px;
+    border-radius: 15px;
+    width: 300px;
+    box-shadow: var(--shadow);
+    position: relative;
+}
+
+.close-modal {
+    color: var(--secondary-text);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: var(--text-color);
+}
+
+.setting-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.setting-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.setting-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in { animation: fadeIn 0.8s ease-out; }
+.animate-fade-down { animation: fadeDown 0.6s ease-out; }
+.animate-slide-up { animation: slideUp 0.8s ease-out; }
+.animate-zoom-in { animation: zoomIn 0.3s ease-out; }
